@@ -1,4 +1,5 @@
-#ifndef heap
+#ifndef CIRCLE_H
+#define CIRCLE_H
 
 class heap {
    private:
@@ -7,3 +8,5 @@ class heap {
    public:
     void insert();
 }
+
+#endif
