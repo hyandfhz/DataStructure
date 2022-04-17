@@ -1,4 +1,4 @@
-// 堆排序
+// P1090 [NOIP2004 提高组] 合并果子
 #include <stdio.h>
 #include "SmallHeap.cpp"
 
@@ -13,11 +13,12 @@ int main() {
         heap.pushNode(targetI);
     }
 
+    int sum = 0;
     while (heap.getLength()) {
-        printf("%d ", heap.getData());
+        sum += heap.getData();
         heap.popNode();
     }
-    printf("\n");
+    printf("%d\n", sum);
 
     return 0;
 }
