@@ -1,5 +1,3 @@
-#define MAX_N 10010
-
 template <typename item>
 class SmallHeap {
    private:
@@ -18,7 +16,7 @@ class SmallHeap {
 
     void shiftUp(item x) {
         while (x / 2 >= 1) {
-            if (data[x] < data[x / 2]) {
+            if (w[x] < w[x / 2]) {
                 swapData(x, x / 2);
                 x /= 2;
             } else {
@@ -31,10 +29,10 @@ class SmallHeap {
         while (x * 2 <= length) {
             int t = x * 2;
             // 选出两个最大的子节点
-            if (t + 1 <= length /* 判断越界 */ && data[t + 1] < data[t]) {
+            if (t + 1 <= length /* 判断越界 */ && w[t + 1] < w[t]) {
                 t++;
             }
-            if (data[x] > data[t]) {
+            if (w[x] > w[t]) {
                 swapData(x, t);
                 x = t;
             } else {
@@ -61,4 +59,11 @@ class SmallHeap {
     }
 
     void init() { length = 0; }
+
+    void print() {
+        printf("------------------\nLength: %d\n", length);
+        for (int i = 1; i <= length; i++) {
+            printf("i: %d , data[i] = %d, w[i] = %d\n", i, data[i], w[i]);
+        }
+    }
 };
