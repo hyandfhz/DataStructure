@@ -1,17 +1,18 @@
-#define MAX_N 0x7fffffff
+#define MAX_N 10010
 
+template <typename item>
 class SmallHeap {
    private:
-    int data[MAX_N];
+    item data[10010];
     int length;
 
-    void swapData(int x, int y) {
-        int t = data[x];
+    void swapData(item x, item y) {
+        item t = data[x];
         data[x] = data[y];
         data[y] = t;
     }
 
-    void shiftUp(int x) {
+    void shiftUp(item x) {
         while (x / 2 >= 1) {
             if (data[x] < data[x / 2]) {
                 swapData(x, x / 2);
@@ -22,7 +23,7 @@ class SmallHeap {
         }
     }
 
-    void shiftDown(int x) {
+    void shiftDown(item x) {
         while (x * 2 <= length) {
             int t = x * 2;
             // 选出两个最大的子节点
@@ -41,9 +42,9 @@ class SmallHeap {
    public:
     int getLength() { return length; }
 
-    int getData(int x = 1) { return data[1]; }
+    int getData(int x = 1) { return data[x]; }
 
-    void pushNode(int node) {
+    void pushNode(item node) {
         data[++length] = node;
         shiftUp(length);
     }
@@ -51,6 +52,11 @@ class SmallHeap {
     void popNode(int x = 1) {
         swapData(x, length--);
         shiftDown(x);
+    }
+
+    item* getDataArray() {
+        item array[] = data;
+        return *array;
     }
 
     SmallHeap() { length = 0; }

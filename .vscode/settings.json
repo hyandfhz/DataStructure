@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "NOIP"
-    ]
+    ],
+    "files.associations": {
+        "iosfwd": "cpp"
+    }
 }

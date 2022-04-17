@@ -1,18 +1,19 @@
-// P1090 [NOIP2004 提高组] 合并果子
-#include <stdio.h>
-
 #define MAX_N 10010
 
-template<typename item>
+template <typename item>
 class SmallHeap {
    private:
     item data[10010];
+    item w[10010];
     int length;
 
     void swapData(item x, item y) {
         item t = data[x];
         data[x] = data[y];
         data[y] = t;
+        t = w[x];
+        w[x] = w[y];
+        w[y] = t;
     }
 
     void shiftUp(item x) {
@@ -46,9 +47,11 @@ class SmallHeap {
     int getLength() { return length; }
 
     int getData(int x = 1) { return data[x]; }
+    int getU(int x = 1) { return w[x]; }
 
-    void pushNode(item node) {
+    void pushNode(item node, item wNode) {
         data[++length] = node;
+        w[length] = wNode;
         shiftUp(length);
     }
 
@@ -57,32 +60,5 @@ class SmallHeap {
         shiftDown(x);
     }
 
-    SmallHeap() { length = 0; }
+    void init() { length = 0; }
 };
-
-int main() {
-    int n;
-    scanf("%d", &n);
-
-    int targetI;
-    SmallHeap<int> heap = SmallHeap<int>();
-    for (int i = 1; i <= n; i++) {
-        scanf("%d", &targetI);
-        heap.pushNode(targetI);
-    }
-
-    int sum = 0;
-    int x1, x2;
-    while (heap.getLength() >= 2) {
-        x1 = heap.getData();
-        heap.popNode();
-        x2 = heap.getData();
-        heap.popNode();
-
-        heap.pushNode(x1 + x2);
-        sum += x1 + x2;
-    }
-    printf("%d\n", sum);
-
-    return 0;
-}
